@@ -9,6 +9,10 @@ store,appId,appName,country,rating,title,text,date,appVersion,...
 google,com.spotify.music,Spotify: Music and Podcasts,us,3,,"not sure why the podcasts queue will only play newest to oldest...",2026-10-06T21:44:38Z,9.1.86.2432,...
 ```
 
+![Real output rows: Spotify reviews from Google Play and the App Store in the same columns](media/app-reviews-output/output.gif)
+
+[Watch the 1-minute walkthrough (MP4, 1080p)](media/example-app-reviews/walkthrough.mp4)
+
 ## Run it
 
 You need an Apify account (the free plan includes $5 of usage a month) and its API token from Apify Console > Settings > API & Integrations.
