@@ -1,0 +1,11 @@
+{
+  "name": "app-reviews-to-csv",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Google Play and App Store reviews to one CSV via the hiver/app-reviews-scraper Apify Actor",
+  "type": "module",
+  "engines": { "node": ">=18.3" },
+  "scripts": { "start": "node reviews-to-csv.mjs" },
+  "dependencies": { "apify-client": "^2.25.0" },
+  "license": "MIT"
+}
