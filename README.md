@@ -59,6 +59,16 @@ Two apps on one day is a small sample. The bench runs again after every new buil
 
 Turn on `onlyNew` with a `monitorId` in the Actor input and put it on an Apify schedule (hourly or daily). Each run returns only reviews that earlier runs with the same monitor ID did not, and you pay only for those. Apify integrations can send each run's new reviews to Slack, email, Google Sheets or a webhook.
 
+## App details too: ratings, star histogram, installs, version
+
+Reviews tell you what users say; app details tell you how the app stands. [App Store & Google Play Scraper](https://apify.com/hiver/app-store-google-play-scraper?utm_source=github&utm_campaign=app-reviews-scraper), also by hiver, returns one row per app with the same columns for both stores: rating, ratings count, the 1 to 5 star histogram, installs (Google Play only; Apple publishes none), price, version and last update. Search terms work too, and every search hit comes back with full details.
+
+![Real output rows from the 2026-10-08 bench runs: Spotify and the top "meditation" result on Google Play and the App Store, in one set of columns](media/app-details/readme.gif)
+
+[Watch the 82-second walkthrough (MP4)](media/app-details/walkthrough.mp4)
+
+On our test bench (2026-10-08, build 0.1.4: details for 4 apps and a "meditation" search in each store, checked against the stores' own pages) it matched 10 of 10 facts on Google Play and 10 of 10 on the App Store, and it was the only Actor tested that covers both stores in one run. The three other Store Actors tested were faster, and a low-cost Google Play-only Actor was cheaper. $1.90 per 1,000 apps on the free plan.
+
 ## Notes
 
 - Unofficial. Not affiliated with, endorsed by or sponsored by Google or Apple. The Actor reads the public review pages that the stores show without logging in, and returns review content only: no reviewer profiles, photos or IDs.
