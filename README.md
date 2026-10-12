@@ -39,9 +39,13 @@ Both write `reviews.csv`. Options: `--countries us gb de` (each app is fetched o
 
 No code: open the [Actor page](https://apify.com/hiver/app-reviews-scraper?utm_source=github&utm_campaign=app-reviews-scraper), paste the apps and download CSV, Excel or JSON.
 
+## Coming from app-store-scraper?
+
+If `app-store-scraper` stopped returning App Store reviews for you, you are not alone. In our check on 2026-10-12 (Python 3.13, one server), the PyPI package (0.3.5, last release 2020, repository archived) returned 0 reviews on 4 of 4 calls: it looks for an access token on the App Store web page that is no longer there, and Apple's review endpoint answers 401. The npm package of the same name (0.18.0) reads Apple's review RSS feed, which came back empty on 27 of 31 first-page calls. The Actor pages through Apple's public web review endpoint without a token. `--max` replaces `how_many`, `--since` replaces `after`, and App Store IDs go in the same list as Google Play packages. It returns no reviewer names.
+
 ## What it costs
 
-$0.09 per 1,000 reviews on the free plan, the same for both stores (a little less on higher Apify plans), plus Apify's $0.00005 start fee per run. Error rows, and reviews already returned in "only new" mode, are free. So $1 buys about 11,000 reviews.
+$0.09 per 1,000 reviews on the free plan, the same for both stores (a little less on higher Apify plans), with no start fee per run (since 2026-10-09). Error rows, and reviews already returned in "only new" mode, are free. So $1 buys about 11,000 reviews.
 
 ## What we measured
 
