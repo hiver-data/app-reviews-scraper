@@ -41,7 +41,37 @@ No code: open the [Actor page](https://apify.com/hiver/app-reviews-scraper?utm_s
 
 ## Coming from app-store-scraper?
 
-If `app-store-scraper` stopped returning App Store reviews for you, you are not alone. In our check on 2026-10-12 (Python 3.13, one server), the PyPI package (0.3.5, last release 2020, repository archived) returned 0 reviews on 4 of 4 calls: it looks for an access token on the App Store web page that is no longer there, and Apple's review endpoint answers 401. The npm package of the same name (0.18.0) reads Apple's review RSS feed, which came back empty on 27 of 31 first-page calls. The Actor pages through Apple's public web review endpoint without a token. `--max` replaces `how_many`, `--since` replaces `after`, and App Store IDs go in the same list as Google Play packages. It returns no reviewer names.
+If `app-store-scraper` stopped returning App Store reviews for you, you are not alone. In our check on 2026-10-12 (Python 3.13, one server), the PyPI package (0.3.5, last release 2020, repository archived) returned 0 reviews on 4 of 4 calls: it looks for an access token on the App Store web page that is no longer there, and Apple's review endpoint answers 401. The npm package of the same name (0.18.0) reads Apple's review RSS feed, which came back empty on 27 of 31 first-page calls. The Actor pages through Apple's public web review endpoint without an Apple token.
+
+For Python code that already uses `AppStore`, install this repo's `python/requirements.txt`, put `python/app_store_scraper_compat.py` beside your script (or run from `python/`), and set your own `APIFY_TOKEN`. Change one import line; keep your existing constructor and review call:
+
+```python
+# Before: from app_store_scraper import AppStore
+from app_store_scraper_compat import AppStore
+from datetime import datetime
+
+app = AppStore(country="us", app_name="spotify", app_id=324684580)
+app.review(how_many=100, after=datetime(2026, 10, 1), sleep=5)
+print(app.reviews_count)
+print(app.reviews)
+```
+
+What differs from PyPI 0.3.5:
+
+- This is a small migration shim, not the original package or a complete replacement. An explicit numeric `app_id` is required; app-name lookup is not supported.
+- Each `.review()` call starts one Actor run on your Apify account. The charge cap defaults to $1.00; lower it with `AppStore(..., max_total_charge_usd=0.25)`. Pricing is $0.09 per 1,000 reviews on the free plan, with no start fee.
+- `.reviews` contains `date` (naive UTC `datetime`, like the original), `review`, `rating`, `isEdited`, `title`, and `userName`. `userName` is always `None`: the Actor returns no reviewer names. When present, `developerResponse` contains `id` (`None`, not supplied by the Actor), `body`, and `modified` (the Actor's ISO date string, or `None`). Missing developer responses are omitted.
+- `after` is inclusive; naive datetimes mean UTC and timezone-aware datetimes are converted to UTC. `how_many` is an upper bound, with a maximum of 5,000 per call; the source's available window and charge cap may return fewer. Omitting `how_many` requests that maximum. `sleep` is accepted and ignored because the Actor handles pacing.
+- Calls append to `.reviews` and update `.reviews_count`, as the library does. Repeating a call can append duplicates; this is not incremental monitoring. Run failures and Actor error rows raise exceptions rather than silently returning an empty list.
+
+Offline verification uses all nine App Store rows from the board's 2026-10-12 export (build 0.1.14, run `f3bCowXbulRwTgHvT`); developer-response and failure cases use explicitly synthetic variants. No live Actor calls:
+
+```bash
+cd python
+PYTHONDONTWRITEBYTECODE=1 python -m unittest discover -s tests -v
+```
+
+Prefer CSV? The existing CLI remains: `--max` replaces `how_many`, `--since` replaces `after`, and App Store IDs go in the same list as Google Play packages.
 
 ## What it costs
 
