@@ -103,6 +103,27 @@ Reviews tell you what users say; app details tell you how the app stands. [App S
 
 On our test bench (2026-10-08, build 0.1.4: details for 4 apps and a "meditation" search in each store, checked against the stores' own pages) it matched 10 of 10 facts on Google Play and 10 of 10 on the App Store, and it was the only Actor tested that covers both stores in one run. The three other Store Actors tested were faster, and a low-cost Google Play-only Actor was cheaper. $1.90 per 1,000 apps on the free plan.
 
+## google-play-scraper search() returns appId None?
+
+If you use the Python package `google-play-scraper` (PyPI 1.2.7, about 700,000 downloads last month) and `search("spotify")` gives you the right app with `appId: None` and `url: None`, it is the library, not your code. Google Play now shows the best match for an app name as a large card above the result list, and 1.2.7 does not read the package name from that card (issue #238 on JoMingyu/google-play-scraper). In our check on 2026-10-14 (Python 3.13, US, English) the top result had `appId: None` for 10 of 10 app names we tried (Spotify, WhatsApp, Duolingo, Calm, Notion, Netflix, Uber, Headspace, Todoist, Slack). The two generic keywords we tried, "meditation" and "budget tracker", came back with IDs. The Node.js package of the same name (10.1.3) returned the right IDs for the same names.
+
+**Free fix first.** A contributor's fix is open as PR #239 and not merged, and 1.2.7 (June 2024) is still the latest release. Installing the fork from that PR returned the right package name for all 10 names in the same check:
+
+```bash
+pip install "git+https://github.com/mrbuslov/google-play-scraper.git@fix/app-id-is-empty"
+```
+
+**If you would rather not run a fork,** `python/play_package_names.py` sends app names to [App Store & Google Play Scraper](https://apify.com/hiver/app-store-google-play-scraper?utm_source=github&utm_campaign=google-play-scraper-appid) and writes a CSV with the package name, title, developer, rating, installs, version and URL of each hit:
+
+```bash
+cd python
+pip install -r requirements.txt
+export APIFY_TOKEN=your_token
+python play_package_names.py Spotify WhatsApp Duolingo Calm --top 3
+```
+
+The Actor reads the result links Google Play shows, so the card's app keeps its package name. A local run of the Actor's code on 2026-10-14 with those four names returned `com.spotify.music`, `com.whatsapp`, `com.duolingo` and `com.calm.android` as the top hits, 12 rows with full details in 21 seconds. Those rows are the offline test fixture in `python/tests/`. It costs $1.90 per 1,000 apps on the free plan, so 12 apps cost about $0.02; `--max-charge` (default $0.10) caps a run. Add `app_store` to `stores` in the script's input to get the App Store bundle IDs for the same names.
+
 ## Notes
 
 - Unofficial. Not affiliated with, endorsed by or sponsored by Google or Apple. The Actor reads the public review pages that the stores show without logging in, and returns review content only: no reviewer profiles, photos or IDs.
