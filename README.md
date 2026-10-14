@@ -87,7 +87,7 @@ Our test bench (2026-10-07, build 0.1.4) ran this Actor and three other Apify St
 | Reviews returned (40 asked) | 40 | 40 | 10 each on the bench's free Apify plan, none for the Google Play app |
 | Price per 1,000 reviews | $0.09 (was $0.25 during the bench) | $0.50 | $0.10 |
 
-Two apps on one day is a small sample. The bench runs again after every new build. Field completeness was about the same as the other two-store Actor (86% vs 85%), so we do not claim an edge there.
+Two apps on one day is a small sample. Later builds have not been benched again yet. Field completeness was about the same as the other two-store Actor (86% vs 85%), so we do not claim an edge there.
 
 ## Monitoring
 
