@@ -124,6 +124,51 @@ python play_package_names.py Spotify WhatsApp Duolingo Calm --top 3
 
 The Actor reads the result links Google Play shows, so the card's app keeps its package name. A local run of the Actor's code on 2026-10-14 with those four names returned `com.spotify.music`, `com.whatsapp`, `com.duolingo` and `com.calm.android` as the top hits, 12 rows with full details in 21 seconds. Those rows are the offline test fixture in `python/tests/`. It costs $1.90 per 1,000 apps on the free plan, so 12 apps cost about $0.02; `--max-charge` (default $0.10) caps a run. Add `app_store` to `stores` in the script's input to get the App Store bundle IDs for the same names.
 
+## Import-swap adapter for Python google-play-scraper 1.2.7
+
+For existing `search()` and `app()` calls, there is also a small adapter in `python/google_play_scraper_compat.py`. It uses the listed [app-details Actor](https://apify.com/hiver/app-store-google-play-scraper?utm_source=github&utm_campaign=google-play-scraper-import-swap), not the reviews Actor. The free fork above is still the first option if you only need the upstream parser repaired.
+
+Install in a fresh environment (Python 3.11+), then run from `python/`, or copy `google_play_scraper_compat.py` beside your script:
+
+```bash
+python3 -m venv .venv
+. .venv/bin/activate
+pip install -r python/requirements.txt
+cd python
+export APIFY_TOKEN=your_token
+```
+
+Change only the import; the original positional arguments and defaults remain accepted:
+
+```python
+# Before: from google_play_scraper import search, app
+from google_play_scraper_compat import search, app
+
+hits = search("Spotify", n_hits=3, lang="en", country="us")
+print(hits[0]["appId"])
+details = app(hits[0]["appId"], lang="en", country="us")
+print(details["ratings"], details["histogram"], details["updated"])
+```
+
+Scope and differences (keys compatible, not full metadata compatibility):
+
+- Only `search()` and `app()` are supplied. The original package is not required or imported. Search returns the same 15 keys as 1.2.7 (which does not include `url`); app returns its same 45 keys including `appId` and `url`.
+- Observed values map to `appId`, `title`, `developer`, `score`, `genre`, `price`, `free`, `currency`, and `installs`. Details additionally map `ratings`, `version`, `released`, and `url`. `histogram` is ordered one-star through five-star; missing histograms remain `None`. `minInstalls` is derived from the published install floor, not an exact install count. `updated` is epoch seconds, and `lastUpdatedOn` is the UTC calendar date derived from the Actor timestamp, not the original localized label.
+- The Actor does not supply descriptions, icons, screenshots, videos, developer contact details, review counts, exact installs, genre IDs, ads/IAP/sale flags, or comments. Unavailable scalars remain `None`, including boolean flags: they are not invented as false. Unavailable `screenshots`, `categories`, and `comments` are empty lists. A missing version remains `None`, not an invented device-dependent version. Code needing those fields is not a drop-in use case.
+- Each positive `search()` or `app()` call starts exactly one paid Actor run; no fallback to the old library, no second detail run per search result, no automatic retry of a failed run. `app()` requires an explicit package ID, not a URL or app name. Errors and mismatched results raise rather than appearing as successful empty details. Empty successful searches return `[]`.
+- `n_hits <= 0` returns `[]` without a run. Other searches ask for at most 200 first-page hits, sorted by the Actor's source rank, with duplicate IDs omitted. Store availability, first-page size, and your charge cap may return fewer. Search positions can change with country and time; there is no built-in app-name-to-package lookup table.
+- Both functions accept optional `token=`, `client=`, and `max_total_charge_usd=` keywords. Otherwise they read your own `APIFY_TOKEN`; the per-call charge cap defaults to $0.10. Pricing is $1.90 per 1,000 apps on the free plan. The example above makes two runs, not one. These are paid cloud calls, unlike the offline tests below.
+
+Verification (2026-10-15, $0 new Apify spend): all 13 unmodified Google Play rows from board-exported runs `TQemqnIoWc1tZM7y5` (three direct apps) and `xXdaThOR8sRIwdnJF` (ten meditation hits) are in `python/tests/fixtures/play_board_exports.json`. Separate current-Actor-code local read-only calls returned the expected top package IDs for Spotify, WhatsApp, Duolingo, Calm, Notion, Netflix, Uber, Headspace, Todoist and Slack (10/10). Those ten real local rows are explicitly labelled in `play_named_apps_local.json`; they are not board/cloud exports or a comparative bench. The adapter replays all of these offline, checking one Actor call per function call. The real Apify SDK also runs against a loopback HTTP fixture with board rows and a synthetic run envelope, so tests cannot spend cloud credit.
+
+```bash
+# From python/; no APIFY_TOKEN or live Actor run required
+python -B -m unittest discover -s tests -v
+# Optional reference key/signature check (the adapter works without this)
+pip install google-play-scraper==1.2.7
+python -B -m unittest discover -s tests -v
+```
+
 ## Notes
 
 - Unofficial. Not affiliated with, endorsed by or sponsored by Google or Apple. The Actor reads the public review pages that the stores show without logging in, and returns review content only: no reviewer profiles, photos or IDs.

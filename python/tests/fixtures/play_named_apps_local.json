@@ -1,0 +1,495 @@
+{
+  "provenance": "Local current Actor code read-only replay, not board or cloud rows. No Apify API calls. One separate input per name prevents cross-term deduplication.",
+  "cases": [
+    {
+      "input": {
+        "stores": [
+          "google_play"
+        ],
+        "country": "us",
+        "language": "en",
+        "apps": [],
+        "searchTerms": [
+          "Spotify"
+        ],
+        "maxResultsPerTerm": 1,
+        "dottedIdStore": "auto"
+      },
+      "expected": "com.spotify.music",
+      "rows": [
+        {
+          "store": "google_play",
+          "appId": "com.spotify.music",
+          "country": "us",
+          "language": "en",
+          "appName": "Spotify: Music and Podcasts",
+          "developer": "Spotify AB",
+          "rating": 4.348287,
+          "ratingsCount": 36484912,
+          "histogram": {
+            "1": 3716905,
+            "2": 1062999,
+            "3": 1310272,
+            "4": 3100494,
+            "5": 27294226
+          },
+          "installs": "1,000,000,000+",
+          "price": 0,
+          "currency": "USD",
+          "version": "Varies with device",
+          "releasedAt": "May 27, 2014",
+          "updatedAt": "2026-10-14T05:44:28Z",
+          "genre": "Music & Audio",
+          "url": "https://play.google.com/store/apps/details?id=com.spotify.music&hl=en&gl=us",
+          "bundleId": null,
+          "histogramUnit": "ratings",
+          "searchTerm": "Spotify",
+          "rank": 1,
+          "warnings": [],
+          "error": null
+        }
+      ]
+    },
+    {
+      "input": {
+        "stores": [
+          "google_play"
+        ],
+        "country": "us",
+        "language": "en",
+        "apps": [],
+        "searchTerms": [
+          "WhatsApp"
+        ],
+        "maxResultsPerTerm": 1,
+        "dottedIdStore": "auto"
+      },
+      "expected": "com.whatsapp",
+      "rows": [
+        {
+          "store": "google_play",
+          "appId": "com.whatsapp",
+          "country": "us",
+          "language": "en",
+          "appName": "WhatsApp Messenger",
+          "developer": "WhatsApp LLC",
+          "rating": 4.6194825,
+          "ratingsCount": 245742188,
+          "histogram": {
+            "1": 10842636,
+            "2": 3454579,
+            "3": 8923419,
+            "4": 21927893,
+            "5": 200593582
+          },
+          "installs": "10,000,000,000+",
+          "price": 0,
+          "currency": "USD",
+          "version": "Varies with device",
+          "releasedAt": "Oct 18, 2010",
+          "updatedAt": "2026-10-13T15:53:15Z",
+          "genre": "Communication",
+          "url": "https://play.google.com/store/apps/details?id=com.whatsapp&hl=en&gl=us",
+          "bundleId": null,
+          "histogramUnit": "ratings",
+          "searchTerm": "WhatsApp",
+          "rank": 1,
+          "warnings": [],
+          "error": null
+        }
+      ]
+    },
+    {
+      "input": {
+        "stores": [
+          "google_play"
+        ],
+        "country": "us",
+        "language": "en",
+        "apps": [],
+        "searchTerms": [
+          "Duolingo"
+        ],
+        "maxResultsPerTerm": 1,
+        "dottedIdStore": "auto"
+      },
+      "expected": "com.duolingo",
+      "rows": [
+        {
+          "store": "google_play",
+          "appId": "com.duolingo",
+          "country": "us",
+          "language": "en",
+          "appName": "Duolingo: Learn Languages",
+          "developer": "Duolingo",
+          "rating": 4.742154,
+          "ratingsCount": 50966222,
+          "histogram": {
+            "1": 978746,
+            "2": 351544,
+            "3": 1170441,
+            "4": 5830846,
+            "5": 42634595
+          },
+          "installs": "500,000,000+",
+          "price": 0,
+          "currency": "USD",
+          "version": "Varies with device",
+          "releasedAt": "May 29, 2013",
+          "updatedAt": "2026-10-12T16:38:11Z",
+          "genre": "Education",
+          "url": "https://play.google.com/store/apps/details?id=com.duolingo&hl=en&gl=us",
+          "bundleId": null,
+          "histogramUnit": "ratings",
+          "searchTerm": "Duolingo",
+          "rank": 1,
+          "warnings": [],
+          "error": null
+        }
+      ]
+    },
+    {
+      "input": {
+        "stores": [
+          "google_play"
+        ],
+        "country": "us",
+        "language": "en",
+        "apps": [],
+        "searchTerms": [
+          "Calm"
+        ],
+        "maxResultsPerTerm": 1,
+        "dottedIdStore": "auto"
+      },
+      "expected": "com.calm.android",
+      "rows": [
+        {
+          "store": "google_play",
+          "appId": "com.calm.android",
+          "country": "us",
+          "language": "en",
+          "appName": "Calm - Sleep, Meditate, Relax",
+          "developer": "Calm.com, Inc.",
+          "rating": 4.476765,
+          "ratingsCount": 616327,
+          "histogram": {
+            "1": 45264,
+            "2": 11675,
+            "3": 22801,
+            "4": 60787,
+            "5": 475791
+          },
+          "installs": "50,000,000+",
+          "price": 0,
+          "currency": "USD",
+          "version": "Varies with device",
+          "releasedAt": "Jul 30, 2014",
+          "updatedAt": "2026-10-12T15:44:00Z",
+          "genre": "Health & Fitness",
+          "url": "https://play.google.com/store/apps/details?id=com.calm.android&hl=en&gl=us",
+          "bundleId": null,
+          "histogramUnit": "ratings",
+          "searchTerm": "Calm",
+          "rank": 1,
+          "warnings": [],
+          "error": null
+        }
+      ]
+    },
+    {
+      "input": {
+        "stores": [
+          "google_play"
+        ],
+        "country": "us",
+        "language": "en",
+        "apps": [],
+        "searchTerms": [
+          "Notion"
+        ],
+        "maxResultsPerTerm": 1,
+        "dottedIdStore": "auto"
+      },
+      "expected": "notion.id",
+      "rows": [
+        {
+          "store": "google_play",
+          "appId": "notion.id",
+          "country": "us",
+          "language": "en",
+          "appName": "Notion: AI Workspace",
+          "developer": "Notion Labs, Inc.",
+          "rating": 4.6080327,
+          "ratingsCount": 399201,
+          "histogram": {
+            "1": 18546,
+            "2": 5634,
+            "3": 12613,
+            "4": 40083,
+            "5": 322293
+          },
+          "installs": "10,000,000+",
+          "price": 0,
+          "currency": "USD",
+          "version": "0.6.4222",
+          "releasedAt": "Jun 5, 2018",
+          "updatedAt": "2026-10-14T01:49:26Z",
+          "genre": "Productivity",
+          "url": "https://play.google.com/store/apps/details?id=notion.id&hl=en&gl=us",
+          "bundleId": null,
+          "histogramUnit": "ratings",
+          "searchTerm": "Notion",
+          "rank": 1,
+          "warnings": [],
+          "error": null
+        }
+      ]
+    },
+    {
+      "input": {
+        "stores": [
+          "google_play"
+        ],
+        "country": "us",
+        "language": "en",
+        "apps": [],
+        "searchTerms": [
+          "Netflix"
+        ],
+        "maxResultsPerTerm": 1,
+        "dottedIdStore": "auto"
+      },
+      "expected": "com.netflix.mediaclient",
+      "rows": [
+        {
+          "store": "google_play",
+          "appId": "com.netflix.mediaclient",
+          "country": "us",
+          "language": "en",
+          "appName": "Netflix",
+          "developer": "Netflix, Inc.",
+          "rating": 4.691033,
+          "ratingsCount": 16537189,
+          "histogram": {
+            "1": 672616,
+            "2": 144260,
+            "3": 360299,
+            "4": 1265586,
+            "5": 14094415
+          },
+          "installs": "1,000,000,000+",
+          "price": 0,
+          "currency": "USD",
+          "version": "Varies with device",
+          "releasedAt": "May 5, 2011",
+          "updatedAt": "2026-10-08T01:04:19Z",
+          "genre": "Entertainment",
+          "url": "https://play.google.com/store/apps/details?id=com.netflix.mediaclient&hl=en&gl=us",
+          "bundleId": null,
+          "histogramUnit": "ratings",
+          "searchTerm": "Netflix",
+          "rank": 1,
+          "warnings": [],
+          "error": null
+        }
+      ]
+    },
+    {
+      "input": {
+        "stores": [
+          "google_play"
+        ],
+        "country": "us",
+        "language": "en",
+        "apps": [],
+        "searchTerms": [
+          "Uber"
+        ],
+        "maxResultsPerTerm": 1,
+        "dottedIdStore": "auto"
+      },
+      "expected": "com.ubercab",
+      "rows": [
+        {
+          "store": "google_play",
+          "appId": "com.ubercab",
+          "country": "us",
+          "language": "en",
+          "appName": "Uber: Rides, eats, hotels",
+          "developer": "Uber Technologies, Inc.",
+          "rating": 4.739597,
+          "ratingsCount": 20130177,
+          "histogram": {
+            "1": 887843,
+            "2": 165748,
+            "3": 229898,
+            "4": 733507,
+            "5": 18113151
+          },
+          "installs": "1,000,000,000+",
+          "price": 0,
+          "currency": "USD",
+          "version": "Varies with device",
+          "releasedAt": "Oct 28, 2010",
+          "updatedAt": "2026-10-10T06:05:50Z",
+          "genre": "Maps & Navigation",
+          "url": "https://play.google.com/store/apps/details?id=com.ubercab&hl=en&gl=us",
+          "bundleId": null,
+          "histogramUnit": "ratings",
+          "searchTerm": "Uber",
+          "rank": 1,
+          "warnings": [],
+          "error": null
+        }
+      ]
+    },
+    {
+      "input": {
+        "stores": [
+          "google_play"
+        ],
+        "country": "us",
+        "language": "en",
+        "apps": [],
+        "searchTerms": [
+          "Headspace"
+        ],
+        "maxResultsPerTerm": 1,
+        "dottedIdStore": "auto"
+      },
+      "expected": "com.getsomeheadspace.android",
+      "rows": [
+        {
+          "store": "google_play",
+          "appId": "com.getsomeheadspace.android",
+          "country": "us",
+          "language": "en",
+          "appName": "Headspace: Sleep & Meditation",
+          "developer": "Headspace for Meditation, Mindfulness and Sleep",
+          "rating": 4.2548466,
+          "ratingsCount": 339983,
+          "histogram": {
+            "1": 42119,
+            "2": 12838,
+            "3": 11051,
+            "4": 24234,
+            "5": 249733
+          },
+          "installs": "10,000,000+",
+          "price": 0,
+          "currency": "USD",
+          "version": "8.34.1",
+          "releasedAt": "Jan 6, 2012",
+          "updatedAt": "2026-10-14T21:04:34Z",
+          "genre": "Health & Fitness",
+          "url": "https://play.google.com/store/apps/details?id=com.getsomeheadspace.android&hl=en&gl=us",
+          "bundleId": null,
+          "histogramUnit": "ratings",
+          "searchTerm": "Headspace",
+          "rank": 1,
+          "warnings": [],
+          "error": null
+        }
+      ]
+    },
+    {
+      "input": {
+        "stores": [
+          "google_play"
+        ],
+        "country": "us",
+        "language": "en",
+        "apps": [],
+        "searchTerms": [
+          "Todoist"
+        ],
+        "maxResultsPerTerm": 1,
+        "dottedIdStore": "auto"
+      },
+      "expected": "com.todoist",
+      "rows": [
+        {
+          "store": "google_play",
+          "appId": "com.todoist",
+          "country": "us",
+          "language": "en",
+          "appName": "Todoist: To Do List & Calendar",
+          "developer": "Todoist Inc.",
+          "rating": 4.6102653,
+          "ratingsCount": 306218,
+          "histogram": {
+            "1": 13003,
+            "2": 5310,
+            "3": 11811,
+            "4": 27748,
+            "5": 248333
+          },
+          "installs": "10,000,000+",
+          "price": 0,
+          "currency": "USD",
+          "version": "Varies with device",
+          "releasedAt": "Nov 18, 2012",
+          "updatedAt": "2026-10-14T12:40:11Z",
+          "genre": "Productivity",
+          "url": "https://play.google.com/store/apps/details?id=com.todoist&hl=en&gl=us",
+          "bundleId": null,
+          "histogramUnit": "ratings",
+          "searchTerm": "Todoist",
+          "rank": 1,
+          "warnings": [],
+          "error": null
+        }
+      ]
+    },
+    {
+      "input": {
+        "stores": [
+          "google_play"
+        ],
+        "country": "us",
+        "language": "en",
+        "apps": [],
+        "searchTerms": [
+          "Slack"
+        ],
+        "maxResultsPerTerm": 1,
+        "dottedIdStore": "auto"
+      },
+      "expected": "com.Slack",
+      "rows": [
+        {
+          "store": "google_play",
+          "appId": "com.Slack",
+          "country": "us",
+          "language": "en",
+          "appName": "Slack",
+          "developer": "SLACK TECHNOLOGIES L.L.C.",
+          "rating": 4.6379957,
+          "ratingsCount": 222343,
+          "histogram": {
+            "1": 10749,
+            "2": 2896,
+            "3": 5407,
+            "4": 17964,
+            "5": 185315
+          },
+          "installs": "50,000,000+",
+          "price": 0,
+          "currency": "USD",
+          "version": "26.10.10.0",
+          "releasedAt": "Jul 22, 2013",
+          "updatedAt": "2026-10-12T21:13:55Z",
+          "genre": "Business",
+          "url": "https://play.google.com/store/apps/details?id=com.Slack&hl=en&gl=us",
+          "bundleId": null,
+          "histogramUnit": "ratings",
+          "searchTerm": "Slack",
+          "rank": 1,
+          "warnings": [],
+          "error": null
+        }
+      ]
+    }
+  ]
+}
